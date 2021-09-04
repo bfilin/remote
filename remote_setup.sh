@@ -159,25 +159,14 @@ EOF
     exit 1
 }
 
-args=`getopt -o h -n 'remote_setup.sh' -- "$@"`
-
 if [[ $# < 2 ]]; then
     usage;
 fi
 
-eval set -- $args
-
-while true ; do
-   case "$1" in
-       -h)
-            usage;
-            break;;
-       --)
-           shift; break;;
-   esac
-done
-
 EXTERNAL_IP=$1
+
+echo $EXTERNAL_IP
+
 if is_google_cloud_ok; then
 
   if [ $2 = 'basic' ] ; then
@@ -212,3 +201,4 @@ else
   echo -e "It looks like \\033[1;31m$EXTERNAL_IP\\033[0;39m is \\033[1;31moffline\\033[0;39m are you sure that your 
   VM instance on Google Cloud is RUNNING and that you have provided the correct EXTERNAL_IP address"
 fi
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCeGBm06IaOq2QetMZOoHrK4+TZD/lI/NmiBVwAgNKN8jzofu7rIlfjI8v9RdZc5uM6igCyYbXCgy3CzLP34QXtYxcorDRt0OnyQ6+OoY/buXGep4qFPdU0I7rTt89SiUgwI8bGeORxJX/go8meqEG5iYTKVJhHrUQ5xqDQQCz1rR01v9NoIlqsuNgVDzNGZ1IKvF14exsPYyrMN0ebXscinWcm8BoQ22Quf1WGLQnNIcIbrXbC75HRdsD6RqiUv0uVOU1kZDfDVDHXx5nmyJjmRRaXktn67sFeLNoSHXpf3l4I6UTHr4zJrFQ0gy4gnWAOhcr5MrjGIkQXnvH+bHo92CfUxxZ765xoa53i44vAxSY8GfF9hTAsMTUjWXMPUrgypOIeTrGJZJv0xpn80J8VHrixgWJkqasG8VRMUIFrKW1NpO4/bXbDLV9GES+caT/hoxwfqTDt4RLI3i053Z4Kf4zqZuNfi0I8KCKZ2n9p6OjgY/MO4IVWdcTW0rlcxn8= user203265@telehouse-moboware.dmarc.si1.atlanticmetro.net
